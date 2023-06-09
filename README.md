@@ -49,6 +49,7 @@ I coded this project in Python using VSCode.
 {Make a list of websites that you found helpful in this project}
 * [TCP vs. UDP complete guide](https://www.avast.com/c-tcp-vs-udp-difference)
 * [Client-server vs. Peer-to-peer network models](https://www.networkstraining.com/peer-to-peer-vs-client-server-network/)
+* [Some socket and threading functions to get started](https://medium.com/@luishrsoares/implementing-peer-to-peer-data-exchange-in-python-8e69513489af)
 
 # Future Work
 
