@@ -50,6 +50,7 @@ I coded this project in Python using VSCode.
 * [TCP vs. UDP complete guide](https://www.avast.com/c-tcp-vs-udp-difference)
 * [Client-server vs. Peer-to-peer network models](https://www.networkstraining.com/peer-to-peer-vs-client-server-network/)
 * [Some socket and threading functions to get started](https://medium.com/@luishrsoares/implementing-peer-to-peer-data-exchange-in-python-8e69513489af)
+* [Very nice client-server tutorial to get started on RealPython](https://realpython.com/python-sockets/#echo-client-and-server)
 
 # Future Work
 

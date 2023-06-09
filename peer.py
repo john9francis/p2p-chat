@@ -20,7 +20,7 @@ class Peer:
             print(f'Connected to {peer_host}:{peer_port}')
         except socket.error as e:
             print(f'Failed to connect to {peer_host}:{peer_port}. Error: {e}')
-
+            
 
     def listen(self):
         '''Listens for incoming connections'''
