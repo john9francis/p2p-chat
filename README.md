@@ -52,6 +52,7 @@ I coded this project in Python using VSCode.
 * [Some socket and threading functions to get started](https://medium.com/@luishrsoares/implementing-peer-to-peer-data-exchange-in-python-8e69513489af)
 * [Very nice client-server tutorial to get started on RealPython](https://realpython.com/python-sockets/#echo-client-and-server)
 * [How to set up Linux on VirtualBox](https://www.youtube.com/watch?v=rJ9ysibH768)
+* [Basic socket video tutorial](https://www.youtube.com/watch?v=Lbfe3-v7yE0&t=17s)
 
 # Future Work
 
