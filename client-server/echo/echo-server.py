@@ -1,12 +1,9 @@
 # echo-server.py
-# from realpython.com
 
 import socket
 
-HOST = "0.0.0.0"  # Trying to bind to all network interfaces
+HOST = "0.0.0.0"  # binding to all network interfaces
 PORT = 60000  # Port to listen on (non-privileged ports are > 1023)
-
-# three requests that the server can respond to
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
