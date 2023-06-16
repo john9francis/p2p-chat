@@ -28,7 +28,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             # receive the todo list and print it
             todo_list = s.recv(1024)
             print(todo_list)
-            input("Press enter to continue: ")
+            print('Press enter to continue: ')
+            input()
             
         if server_response.decode() == "Please enter the to-do you would like to add.":
             # enter todo logic

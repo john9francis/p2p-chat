@@ -45,16 +45,18 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             if choice.decode() == "quit" or choice.decode() == "Quit":
                 conn.sendall(b"Quitting...")
                 break
-            if choice.decode() == '1':
+
+            elif choice.decode() == '1':
                 # view to-do list
                 conn.sendall(b"Here's your to-do list.")
                 conn.sendall(read_file(file).encode())
                 
-            if choice.decode() == '2':
+            elif choice.decode() == '2':
                 # add a to-do
                 conn.sendall(b"Please enter the to-do you would like to add.")
                 pass
-            if choice.decode() == '3':
+
+            elif choice.decode() == '3':
                 # mark a to-do as complete
                 conn.sendall(b"Which to-do did you complete?")
                 pass
