@@ -37,6 +37,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 # do response3
                 pass
             if data.decode() == "4":
+                conn.sendall(b"Quitting...")
                 break
             else: 
                 # throw an error
