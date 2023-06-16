@@ -23,4 +23,4 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             data = conn.recv(1024)
             if not data:
                 break
-            conn.sendall(f'You chose: {data}.')
+            conn.sendall(b'You chose: ' + data + b'.')
