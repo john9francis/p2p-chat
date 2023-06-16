@@ -19,7 +19,7 @@ def write_todo(todo,filename):
 def read_file(filename):
     '''Takes in a filename and returns the contents of the file as a string'''
     with open(filename, "r") as f:
-        return filename.read()
+        return f.read()
     
 #endregion  
 
