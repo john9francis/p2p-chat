@@ -14,9 +14,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
     print(welcome.decode())
 
-    response = input()
+    choice = input()
 
-    s.sendall(response.encode())
-    data = s.recv(1024)
+    s.sendall(choice.encode())
+    server_response = s.recv(1024)
 
-print("Received: " + data.decode())
+print(server_response.decode())
