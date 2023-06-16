@@ -23,8 +23,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
         conn.sendall(welcome_message.encode())
 
-        while True:
-            data = conn.recv(1024)
-            if not data:
-                break
-            conn.sendall(b'You chose: ' + data + b'.')
+        data = conn.recv(1024)
+
+        conn.sendall(b'You chose: ' + data + b'.')

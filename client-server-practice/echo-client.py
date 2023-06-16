@@ -10,10 +10,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
 
     # receive welcome message:
-    while True:
-        welcome = s.recv(1024)
-        if not welcome:
-            break
+    welcome = s.recv(1024)
 
     print(welcome.decode())
 
