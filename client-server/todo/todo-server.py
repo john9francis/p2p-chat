@@ -1,12 +1,14 @@
-# echo-server.py
+# todo-server.py
 
 import socket
+import threading
 
 HOST = "0.0.0.0"  # binding to all network interfaces
 PORT = 60000  # Port to listen on (non-privileged ports are > 1023)
 
 file = "todo_list.txt"
 
+#region Functions
 # functions we will be using to modify the todo list
 def write_todo(todo,filename):
     '''Takes in a todo string and a file and writes the todo to the file on a new line.'''
@@ -18,7 +20,8 @@ def read_file(filename):
     '''Takes in a filename and returns the contents of the file as a string'''
     with open(filename, "r") as f:
         return filename.read()
-
+    
+#endregion  
 
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -29,31 +32,31 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     with conn:
         print(f"Connected by {addr}")
 
-        view = "view to-do list"
-        add = "add a to-do"
-        complete = "mark a to-do as complete"
-
         welcome_message = f'Welcome to the to-do list.' + \
-                          f'\nEnter "1" to {view}, ' + \
-                          f'\n"2" to {add}, ' + \
-                          f'\n"3" to {complete}, ' + \
+                          f'\nEnter "1" to view todo list, ' + \
+                          f'\n"2" to add a to-do item to the list, ' + \
+                          f'\n"3" to mark a to-do as complete, ' + \
                           f'\nor "Quit" to quit.'
+        
         conn.sendall(welcome_message.encode())
 
         while True:
-            data = conn.recv(1024)
+            choice = conn.recv(1024)
 
-            if data.decode() == "quit" or data.decode() == "Quit":
+            if choice.decode() == "quit" or choice.decode() == "Quit":
                 conn.sendall(b"Quitting...")
                 break
-            if data.decode() == '1':
+            if choice.decode() == '1':
                 # view to-do list
+                conn.sendall(b"Here's your to-do list.")
                 pass
-            if data.decode() == '2':
+            if choice.decode() == '2':
                 # add a to-do
+                conn.sendall(b"Please enter the to-do you would like to add.")
                 pass
-            if data.decode() == '3':
+            if choice.decode() == '3':
                 # mark a to-do as complete
+                conn.sendall(b"Which to-do did you complete?")
                 pass
 
             else:
