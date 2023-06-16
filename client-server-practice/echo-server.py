@@ -18,9 +18,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     conn, addr = s.accept()
     with conn:
         print(f"Connected by {addr}")
-        
-        print(f"Would you like me to 1.{request1}, 2.{request2}, or 3.{request3}?")
-        print('(Please enter "1", "2", or "3".)')
+
+        welcome_message = f"Would you like me to 1.{request1}, 2.{request2}, or 3.{request3}? " + '(Please enter "1", "2", or "3".)'
+
+        conn.sendall(welcome_message.bytes())
 
         while True:
             data = conn.recv(1024)
