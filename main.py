@@ -1,10 +1,35 @@
-from peer import Peer
-import time
+import socket
+import threading
 
-# Create two peer instances
-HOST1 = "127.0.0.1"  # Standard loopback interface address (localhost)
-PORT1 = 8001  # Port to listen on (non-privileged ports are > 1023)
-PORT2 = 8002
+HOST = socket.gethostname()
+PORT = 60000
 
-peer1 = Peer(HOST1, PORT1)
-peer2 = Peer('localhost', 8001)
+def receive_data(conn):
+    while True:
+        data = conn.recv(1024)
+        if not data:
+            break
+        print(f"Received {data.decode()}")
+
+def send_data(conn):
+    while True:
+        message = input("Enter a message: ")
+        if message.lower() == "quit":
+            break
+        conn.sendall(message.encode())
+
+# Establish connection as a peer
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.bind((HOST, PORT))
+    s.listen()
+    print("Waiting for incoming connections...")
+    conn, addr = s.accept()
+    print(f"Connected by {addr}")
+
+    # Start receiving and sending data concurrently
+    recv_thread = threading.Thread(target=receive_data, args=(conn,))
+    send_thread = threading.Thread(target=send_data, args=(conn,))
+    recv_thread.start()
+    send_thread.start()
+    recv_thread.join()
+    send_thread.join()
