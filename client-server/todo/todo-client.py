@@ -26,7 +26,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         if server_response.decode() == "Here's your to-do list.":
             # view todo list logic
             # receive the todo list and print it
-            todo_list = s.recv(1024)
+            todo_list = s.recv(4096)
             print(todo_list)
 
         if server_response.decode() == "Please enter the to-do you would like to add.":
