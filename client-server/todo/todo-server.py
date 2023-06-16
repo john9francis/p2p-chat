@@ -51,8 +51,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 conn.sendall(b"Here's your to-do list.")
                 conn.sendall(read_file(file).encode())
                 
-                permission_to_continue = conn.recv(1024)
-                
             elif choice.decode() == '2':
                 # add a to-do
                 conn.sendall(b"Please enter the to-do you would like to add.")
