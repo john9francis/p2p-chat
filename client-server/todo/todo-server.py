@@ -9,7 +9,7 @@ PORT = 60000  # Port to listen on (non-privileged ports are > 1023)
 file = "todo_list.txt"
 
 #region Functions
-# functions we will be using to modify the todo list
+
 def write_todo(todo,filename):
     '''Takes in a todo string and a file and writes the todo to the file on a new line.'''
     with open(filename, "w") as f:
@@ -49,7 +49,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             if choice.decode() == '1':
                 # view to-do list
                 conn.sendall(b"Here's your to-do list.")
-                pass
+                conn.sendall(read_file(file).encode())
+                
             if choice.decode() == '2':
                 # add a to-do
                 conn.sendall(b"Please enter the to-do you would like to add.")
@@ -61,4 +62,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
             else:
                 conn.sendall(b'Sorry, That\'s not an option. Please try again.')
+
+            conn.sendall(b"Okay, what's next? (1. view, 2. add, or 3. mark )")
 
