@@ -19,7 +19,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
     response = input()
 
-    s.sendall(response.bytes())
+    s.sendall(response.encode())
     data = s.recv(1024)
 
 print("Received: " + data.decode())

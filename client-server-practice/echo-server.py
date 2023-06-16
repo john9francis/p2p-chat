@@ -21,7 +21,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
         welcome_message = f"Would you like me to 1.{request1}, 2.{request2}, or 3.{request3}? " + '(Please enter "1", "2", or "3".)'
 
-        conn.sendall(welcome_message.bytes())
+        conn.sendall(welcome_message.encode())
 
         while True:
             data = conn.recv(1024)
