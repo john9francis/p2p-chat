@@ -8,13 +8,12 @@ PORT = 60000  # The port used by the server
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
+    # receive welcome message:
+
+    welcome = s.recv(1024)
+    print(welcome.decode())
 
     while True:
-        # receive welcome message:
-        welcome = s.recv(1024)
-
-        print(welcome.decode())
-
         choice = input()
 
         s.sendall(choice.encode())
