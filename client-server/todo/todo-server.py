@@ -13,7 +13,15 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     with conn:
         print(f"Connected by {addr}")
 
-        welcome_message = "Welcome to the Echo server. Whatever you type, I will echo."
+        action1 = "view to-do list"
+        action2 = "add a to-do"
+        action3 = "mark a to-do as complete"
+
+        welcome_message = f'Welcome to the to-do list.' + \
+                          f'\nEnter "1" to {action1}, ' + \
+                          f'\n"2" to {action2}, ' + \
+                          f'\n"3" to {action3}, ' + \
+                          f'\nor "Quit" to quit.'
         conn.sendall(welcome_message.encode())
 
         while True:
