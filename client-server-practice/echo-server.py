@@ -21,8 +21,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
         while True:
             data = conn.recv(1024)
-            conn.sendall(b'You said: ' + data + b'.')
 
             if data.decode() == "quit" or data.decode() == "Quit":
                 conn.sendall(b"Quitting...")
                 break
+            else:
+                conn.sendall(b'You said: ' + data + b'.')
+
