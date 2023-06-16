@@ -1,8 +1,8 @@
 import socket
 import threading
 
-HOST = socket.gethostname()
-PORT = 60000
+HOST = "John_Francis"
+PORT = 60001
 
 def receive_data(conn):
     while True:
