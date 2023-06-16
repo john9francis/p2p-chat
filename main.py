@@ -24,12 +24,13 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.listen()
     print("Waiting for incoming connections...")
     conn, addr = s.accept()
-    print(f"Connected by {addr}")
+    with conn:
+        print(f"Connected by {addr}")
 
-    # Start receiving and sending data concurrently
-    recv_thread = threading.Thread(target=receive_data, args=(conn,))
-    send_thread = threading.Thread(target=send_data, args=(conn,))
-    recv_thread.start()
-    send_thread.start()
-    recv_thread.join()
-    send_thread.join()
+        # Start receiving and sending data concurrently
+        recv_thread = threading.Thread(target=receive_data, args=(conn,))
+        send_thread = threading.Thread(target=send_data, args=(conn,))
+        recv_thread.start()
+        send_thread.start()
+        recv_thread.join()
+        send_thread.join()
