@@ -13,13 +13,16 @@ request3 = "Access a database"
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
+    print("Waiting for a connection...")
     s.listen()
     conn, addr = s.accept()
     with conn:
         print(f"Connected by {addr}")
+        
+        print(f"Would you like me to 1.{request1}, 2.{request2}, or 3.{request3}?")
+        print('(Please enter "1", "2", or "3".)')
+
         while True:
-            print(f"Would you like me to 1.{request1}, 2.{request2}, or 3.{request3}?")
-            print('(Please enter "1", "2", or "3".)')
             data = conn.recv(1024)
             if not data:
                 break
