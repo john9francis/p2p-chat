@@ -1,7 +1,7 @@
 import socket
 import threading
 
-HOST = "John_Francis"
+HOST = "192.168.1.186" # windows ip addy
 PORT = 60001
 
 def receive_data(conn):
