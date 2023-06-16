@@ -25,20 +25,22 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
             data = conn.recv(1024)
 
-            conn.sendall(b'You chose: ' + data + b'.')
 
             if data.decode() == "1":
                 # do response1
-                pass
+                conn.sendall(b'You chose: ' + data + b'.')
+
             if data.decode() == "2":
                 # do response2
-                pass
+                conn.sendall(b'You chose: ' + data + b'.')
+
             if data.decode() == "3":
                 # do response3
-                pass
+                conn.sendall(b'You chose: ' + data + b'.')
+
             if data.decode() == "4":
                 conn.sendall(b"Quitting...")
-                break
+                
             else: 
                 # throw an error
                 pass
