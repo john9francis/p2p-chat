@@ -13,8 +13,7 @@ file = "todo_list.txt"
 def write_todo(todo,filename):
     '''Takes in a todo string and a file and writes the todo to the file on a new line.'''
     with open(filename, "w") as f:
-        f.write(todo)
-        f.write('\n')
+        f.write(f'{todo}\n')
 
 def read_file(filename):
     '''Takes in a filename and returns the contents of the file as a string'''
