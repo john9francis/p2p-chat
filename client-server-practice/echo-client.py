@@ -11,4 +11,4 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.sendall(b"1")
     data = s.recv(1024)
 
-print("Received: " + data)
+print("Received: " + data.decode())
