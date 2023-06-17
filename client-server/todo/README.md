@@ -8,7 +8,7 @@ The todo list will be saved on the server machine in the "todo-list.txt" file.
 
 I wrote this software to teach myself how to use the python socket library, specifically how to create a client-server network that handles multiple different requests.
 
-For a visual demonstration of my software, check out my [Software Demo Video](http://youtube.link.goes.here).
+For a visual demonstration of my software, check out my [Software Demo Video](https://youtu.be/I_UqZxQYhME).
 
 # Network Communication
 
