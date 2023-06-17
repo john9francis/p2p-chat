@@ -37,7 +37,12 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
     def add_todo():
         '''deals with adding a todo to the server's todo list'''
-        pass
+        # first, tell the server what todo to add
+        todo = input()
+        s.sendall(todo.encode())
+
+        # second, receive the confirmation from the server.
+        s.recv(1024)
 
     #endregion
 
