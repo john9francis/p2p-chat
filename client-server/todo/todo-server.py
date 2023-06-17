@@ -42,10 +42,21 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         def send_todo_list():
             '''sends client todo list'''
             todo_list = read_file(file)
-            conn.sendall(todo_list[0].encode())
 
-            # wait for client to send the ok
+            # first, let the client know how many lines to expect.
+            line_count = len(todo_list)
+            conn.sendall(str(line_count).encode())
+
+            # second, send that many lines to the client.
+            for line in todo_list:
+                conn.sendall(line.encode())
+
+            # third, wait for client to send the ok
             ok = conn.recv(1024)
+
+        def add_todo(todo):
+            '''add's a todo to the file'''
+            pass
 
 
         while True:

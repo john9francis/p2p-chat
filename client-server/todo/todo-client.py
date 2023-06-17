@@ -17,11 +17,26 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
     def receive_todo_list():
         '''deals with receiving and displaying the todo list from the server'''
-        todo_list = s.recv(4096)
-        print(todo_list.decode())
 
-        # send back something
+        # first, receive the amount of lines
+        list_lines = int(s.recv(1024).decode())
+
+        # second, receive that many lines from the server.
+        client_list = []
+        for _ in range(list_lines):
+            line = s.recv(1024).decode()
+            client_list.append(line)
+
+        # print it out for the client to see:
+        for line in client_list:
+            print(line)
+
+        # third, send back something
         s.send(b'done')
+
+    def add_todo():
+        '''deals with adding a todo to the server's todo list'''
+        pass
 
     #endregion
 
