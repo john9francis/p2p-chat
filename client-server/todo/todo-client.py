@@ -66,6 +66,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
         elif server_response.decode() == "error":
             print("Sorry, invalid input. Please try again.")
+            break
 
         continue_message = s.recv(1024)
         print(continue_message.decode())
