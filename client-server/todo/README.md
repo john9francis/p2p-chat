@@ -29,7 +29,7 @@ I used the socket python library for this project, which is included in the pyth
 
 # Future Work
 
-* Make it a little more reliable even if the internet isn't great
+* Make it a little more reliable even if the internet isn't great. Maybe add something that resets after it hangs for a few seconds.
 * Add support for multiple clients to access the todo list at once using the "threading" library
 * Test it on MacOS (this was only tested on Windows and Linux)
 * Create a GUI for better user experience
