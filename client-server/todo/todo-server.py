@@ -71,7 +71,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 pass
 
             else:
-                conn.sendall(b'Sorry, That\'s not an option. Please try again.')
+                conn.sendall(b'error')
 
             conn.sendall(b"What is your input? (1. view, 2. add, or 3. mark )")
 

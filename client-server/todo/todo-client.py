@@ -18,8 +18,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     def receive_todo_list():
         '''deals with receiving and displaying the todo list from the server'''
         todo_list = s.recv(4096)
-        for line in todo_list:
-            print(line)
+        print(todo_list.decode())
 
         # send back something
         s.send(b'done')
@@ -47,6 +46,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         elif server_response.decode() == "Which to-do did you complete?":
             # enter complete logic
             pass
+        elif server_response.decode() == "error":
+            print("Sorry, invalid input. Please try again.")
 
         continue_message = s.recv(1024)
         print(continue_message)
