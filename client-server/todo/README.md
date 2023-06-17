@@ -23,9 +23,9 @@ I used the socket python library for this project, which is included in the pyth
 
 # Useful Websites
 
-{Make a list of websites that you found helpful in this project}
-* [Web Site Name](http://url.link.goes.here)
-* [Web Site Name](http://url.link.goes.here)
+* [Very nice client-server tutorial to get started on RealPython](https://realpython.com/python-sockets/#echo-client-and-server)
+* [How to set up Linux on VirtualBox](https://www.youtube.com/watch?v=rJ9ysibH768)
+* [Basic socket video tutorial](https://www.youtube.com/watch?v=Lbfe3-v7yE0&t=17s)
 
 # Future Work
 
