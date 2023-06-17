@@ -43,18 +43,22 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         # first, get a list of the todos
         receive_todo_list()
 
-        # second, get input until they enter a valid todo
-        while True:
-            todo_to_mark = input()
-            s.sendall(todo_to_mark.encode())
+        # second, get input if the list is full or empty
+        full_or_empty = s.recv(1024).decode()
 
-            response = s.recv(1024).decode()
-            if response == '0':
-                print(f"Marking {todo_to_mark} as complete.")
-                break
-            elif response == '1':
-                print("Invalid option. Please try again.")
-
+        # third, get input until they enter a valid todo
+        if full_or_empty == "full":
+            while True:
+                todo_to_mark = input()
+                s.sendall(todo_to_mark.encode())
+    
+                response = s.recv(1024).decode()
+                if response == '0':
+                    print(f"Marking {todo_to_mark} as complete.")
+                    break
+                elif response == '1':
+                    print("Invalid option. Please try again.")
+    
 
 
 

@@ -114,10 +114,16 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             # first, send the todo list to look at:
             send_todo_list()
 
+            # second, tell the client if it's empty:
+            if len(get_undone_todos(file)) == 0:
+                conn.sendall('empty'.encode())
+            else:
+                conn.sendall('full'.encode())
+
             # pass everything if there are no todos in the list
             if len(get_undone_todos(file)) != 0:
 
-                # second, receive the todo they want to complete
+                # third, receive the todo they want to complete
                 todo = ""
                 while True:
                     todo = conn.recv(1024).decode()
@@ -136,14 +142,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     else:
                        conn.sendall('1'.encode())
 
-                # third, mark that todo as complete.
+                # Mark that todo as complete.
                 mark_todo_complete(file,todo)
-                
-            else:
-                # just receive and do nothing with it
-                conn.recv(1024)
-                conn.sendall('0'.encode()) # telling the client to continue
-
 
                 
 
