@@ -121,7 +121,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 todo = ""
                 while True:
                     todo = conn.recv(1024).decode()
-    
+
                     # Check if todo is in the list
                     undone_todos = get_undone_todos(file)
                     valid = False
@@ -129,15 +129,23 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                         if todo == str(item):
                             valid = True
                             break
-                        
+
                     if valid:
                         conn.sendall('0'.encode())
                         break
                     else:
                        conn.sendall('1'.encode())
-    
+
                 # third, mark that todo as complete.
                 mark_todo_complete(file,todo)
+                
+            else:
+                # just receive and do nothing with it
+                conn.recv(1024)
+                conn.sendall('0'.encode()) # telling the client to continue
+
+
+                
 
         #endregion
 
