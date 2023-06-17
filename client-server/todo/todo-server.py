@@ -8,11 +8,11 @@ PORT = 60000  # Port to listen on (non-privileged ports are > 1023)
 
 file = "todo_list.txt"
 
-#region Functions
+#region read & write to file functions
 
 def write_todo(todo,filename):
     '''Takes in a todo string and a file and writes the todo to the file on a new line.'''
-    with open(filename, "w") as f:
+    with open(filename, "a") as f:
         f.write(f'{todo}\n')
 
 def read_file(filename):
