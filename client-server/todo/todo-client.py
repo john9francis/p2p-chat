@@ -13,6 +13,19 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     welcome = s.recv(1024)
     print(welcome.decode())
 
+    #region Functions
+
+    def receive_todo_list():
+        '''deals with receiving and displaying the todo list from the server'''
+        todo_list = s.recv(4096)
+        for line in todo_list:
+            print(line)
+
+        # send back something
+        s.send(b'done')
+
+    #endregion
+
     while True:
         choice = input()
 
@@ -24,10 +37,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         if server_response.decode() == "Quitting...":
             break
         if server_response.decode() == "Here's your to-do list.":
-            # view todo list logic
-            # receive the todo list and print it
-            todo_list = s.recv(4096)
-            print(todo_list)
+            receive_todo_list()
 
         if server_response.decode() == "Please enter the to-do you would like to add.":
             # enter todo logic
@@ -38,5 +48,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
         continue_message = s.recv(1024)
         print(continue_message)
+
+    
 
 

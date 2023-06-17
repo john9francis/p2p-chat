@@ -18,7 +18,7 @@ def write_todo(todo,filename):
 def read_file(filename):
     '''Takes in a filename and returns the contents of the file as a string'''
     with open(filename, "r") as f:
-        return f.read()
+        return f.read().splitlines()
     
 #endregion  
 
@@ -39,6 +39,15 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         
         conn.sendall(welcome_message.encode())
 
+        def send_todo_list():
+            '''sends client todo list'''
+            todo_list = read_file(file)
+            conn.sendall(todo_list.encode())
+
+            # wait for client to send the ok
+            ok = conn.recv(1024)
+
+
         while True:
             choice = conn.recv(1024)
 
@@ -49,7 +58,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             elif choice.decode() == '1':
                 # view to-do list
                 conn.sendall(b"Here's your to-do list.")
-                conn.sendall(read_file(file).encode())
+                send_todo_list()
                 
             elif choice.decode() == '2':
                 # add a to-do
