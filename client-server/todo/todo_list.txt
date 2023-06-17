@@ -1,3 +1,5 @@
 _homework
 _test
 _study
+_sleep
+_exercise

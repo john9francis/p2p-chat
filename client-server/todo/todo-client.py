@@ -44,6 +44,20 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         # first, get a list of the todos
         receive_todo_list()
 
+        # second, get input until they enter a valid todo
+        while True:
+            todo_to_mark = input()
+            s.sendall(todo_to_mark.encode())
+
+            response = s.recv(1024).decode()
+            if response == "valid":
+                print(f"Marking {todo_to_mark} as complete.")
+                break
+            else:
+                print("Invalid option. Please try again.")
+
+
+
 
 
     #endregion
@@ -66,12 +80,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             add_todo()
 
         elif server_response.decode() == "Which to-do did you complete?":
-            # enter complete logic
-            pass
+            complete_todo()
 
         elif server_response.decode() == "error":
             print("Sorry, invalid input. Please try again.")
-            break
 
         continue_message = s.recv(1024)
         print(continue_message.decode())

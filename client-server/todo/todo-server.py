@@ -31,17 +31,6 @@ def get_undone_todos(filename):
 
     return undone_todos
     
-def check_todo_existence(filename, todo):
-    '''returns true if the todo is found in the todo list file,
-    and returns false otherwise.'''
-    all_todos = read_file(filename)
-    existence = False
-
-    for list_todo in all_todos:
-        if list_todo == f"_{todo}":
-            existence = True
-
-    return existence
 
 def complete_todo(filename, todo):
     '''takes in a todo that exists in the todo list file,
@@ -100,6 +89,16 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             send_todo_list()
 
             # second, receive the todo they want to complete
+            while True:
+                todo = conn.recv(1024).decode()
+
+                # check if todo is in the list:
+                if todo in get_undone_todos(file):
+                    conn.sendall(b'valid')
+                    break
+
+                conn.sendall(b'invalid')
+
 
 
         while True:
@@ -122,7 +121,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             elif choice.decode() == '3':
                 # mark a to-do as complete
                 conn.sendall(b"Which to-do did you complete?")
-                pass
+                complete_todo()
 
             else:
                 conn.sendall(b'error')
