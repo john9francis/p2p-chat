@@ -21,6 +21,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         # first, receive the amount of lines
         list_lines = int(s.recv(4096).decode())
 
+        # send the ok to move on
+        s.sendall(b'ok')
+
         # second, receive that many lines from the server.
         client_list = []
         for _ in range(list_lines):
