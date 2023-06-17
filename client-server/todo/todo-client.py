@@ -29,6 +29,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             line = s.recv(4096).decode()
             print(f"{line}\n")
 
+            # send the ok to send another
+            s.sendall(b'ok')
+
         # third, send back something
         s.send(b'done')
 

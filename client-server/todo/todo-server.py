@@ -53,6 +53,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             # second, send that many lines to the client.
             for line in todo_list:
                 conn.sendall(line.encode())
+                # get the ok to send another
+                conn.recv(1024)
 
             # third, wait for client to send the ok
             conn.recv(4096)
