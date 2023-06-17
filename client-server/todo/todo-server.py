@@ -86,8 +86,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             elif choice.decode() == '2':
                 # add a to-do
                 conn.sendall(b"Please enter the to-do you would like to add.")
-                pass
-
+                add_todo()
+                
             elif choice.decode() == '3':
                 # mark a to-do as complete
                 conn.sendall(b"Which to-do did you complete?")

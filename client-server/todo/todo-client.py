@@ -61,8 +61,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             receive_todo_list()
 
         elif server_response.decode() == "Please enter the to-do you would like to add.":
-            # enter todo logic
-            pass
+            add_todo()
 
         elif server_response.decode() == "Which to-do did you complete?":
             # enter complete logic
