@@ -36,13 +36,15 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
         if server_response.decode() == "Quitting...":
             break
-        if server_response.decode() == "Here's your to-do list.":
+
+        elif server_response.decode() == "Here's your to-do list.":
             receive_todo_list()
 
-        if server_response.decode() == "Please enter the to-do you would like to add.":
+        elif server_response.decode() == "Please enter the to-do you would like to add.":
             # enter todo logic
             pass
-        if server_response.decode() == "Which to-do did you complete?":
+
+        elif server_response.decode() == "Which to-do did you complete?":
             # enter complete logic
             pass
 
