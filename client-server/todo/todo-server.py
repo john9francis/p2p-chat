@@ -32,10 +32,24 @@ def get_undone_todos(filename):
     return undone_todos
     
 
-def complete_todo(filename, todo):
-    '''takes in a todo that exists in the todo list file,
-    and changes the _ to an X. '''
-    pass
+def mark_todo_complete(filename, todo):
+    with open(filename, 'r') as file:
+        lines = file.readlines()
+
+    line_found = False
+    for i in range(len(lines)):
+        if lines[i].strip() == f'_{todo}':
+            lines[i] = f'X{todo}' + '\n'
+            line_found = True
+            break
+
+    if not line_found:
+        print("Line not found in the file.")
+        return
+
+    with open(filename, 'w') as file:
+        file.writelines(lines)
+
     
 #endregion  
 
@@ -89,6 +103,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             send_todo_list()
 
             # second, receive the todo they want to complete
+            todo = ""
             while True:
                 todo = conn.recv(1024).decode()
 
@@ -106,6 +121,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     break
                 else:
                    conn.sendall('1'.encode())
+
+            # third, mark that todo as complete.
+            mark_todo_complete(file,todo)
 
 
 
