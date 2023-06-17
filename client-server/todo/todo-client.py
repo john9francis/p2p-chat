@@ -27,7 +27,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         # second, receive that many lines from the server.
         for _ in range(list_lines):
             line = s.recv(4096).decode()
-            print(f"{line}\n")
+            print(line)
 
             # send the ok to send another
             s.sendall(b'ok')
