@@ -50,7 +50,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
         def send_todo_list():
             '''sends client todo list'''
-            todo_list = read_file(file)
+            todo_list = get_undone_todos(file)
 
             # first, let the client know how many lines to expect.
             line_count = len(todo_list)
