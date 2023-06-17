@@ -22,7 +22,7 @@ I coded these projects in Python using VSCode. I used the socket and threading l
 # Completed Projects:
 
 * [Echo](client-server/echo): client sends something to the server and the server repeats it right back
-* Todo: server holds a todo list which the client can modify in three different ways
+* [Todo](client-server/todo): server holds a todo list which the client can modify in three different ways
 
 # Future Work
 
