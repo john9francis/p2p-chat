@@ -67,10 +67,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             # add the todo to the file
             write_todo(todo, file)
 
-            # second, tell the client that it's done
-            conn.sendall(b'ok')
-
-
         while True:
             choice = conn.recv(1024)
 
@@ -87,7 +83,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 # add a to-do
                 conn.sendall(b"Please enter the to-do you would like to add.")
                 add_todo()
-                
+
             elif choice.decode() == '3':
                 # mark a to-do as complete
                 conn.sendall(b"Which to-do did you complete?")

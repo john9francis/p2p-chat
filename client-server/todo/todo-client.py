@@ -41,9 +41,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         todo = input()
         s.sendall(todo.encode())
 
-        # second, receive the confirmation from the server.
-        s.recv(1024)
-
     #endregion
 
     while True:
