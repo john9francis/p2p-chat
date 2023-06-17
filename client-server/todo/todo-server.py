@@ -94,10 +94,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
                 # check if todo is in the list:
                 if todo in get_undone_todos(file):
-                    conn.sendall(b'valid')
+                    conn.sendall('valid'.encode())
                     break
 
-                conn.sendall(b'invalid')
+                conn.sendall('invalid'.encode())
 
 
 
