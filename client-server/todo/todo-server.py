@@ -92,12 +92,18 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             while True:
                 todo = conn.recv(1024).decode()
 
-                # check if todo is in the list:
+                # Check if todo is in the list
                 undone_todos = get_undone_todos(file)
-                if any(todo == item for item in undone_todos):
+                valid = False
+                for item in undone_todos:
+                    if todo == item:
+                        valid = True
+                        break
+
+                if valid:
                     conn.sendall('valid'.encode())
                     break
-
+                
                 conn.sendall('invalid'.encode())
 
 
