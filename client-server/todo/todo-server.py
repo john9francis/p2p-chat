@@ -42,7 +42,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         def send_todo_list():
             '''sends client todo list'''
             todo_list = read_file(file)
-            conn.sendall(todo_list.encode())
+            conn.sendall(todo_list[0].encode())
 
             # wait for client to send the ok
             ok = conn.recv(1024)
