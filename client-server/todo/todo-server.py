@@ -1,7 +1,6 @@
 # todo-server.py
 
 import socket
-import threading
 
 HOST = "0.0.0.0"  # binding to all network interfaces
 PORT = 60000  # Port to listen on (non-privileged ports are > 1023)
@@ -70,23 +69,36 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         
         conn.sendall(welcome_message.encode())
 
+        #region functions for the socket
+
         def send_todo_list():
             '''sends client todo list'''
             todo_list = get_undone_todos(file)
 
             # first, let the client know how many lines to expect.
             line_count = len(todo_list)
-            conn.sendall(str(line_count).encode())
+
+            empty = False
+
+            if line_count == 0:
+                empty = True
+                conn.sendall("1".encode())
+            else:
+                conn.sendall(str(line_count).encode())
 
             # recieve the ok to move on
             conn.recv(1024)
 
             # second, send that many lines to the client.
-            for line in todo_list:
-                conn.sendall(line.encode())
-                # get the ok to send another
+            if empty:
+                conn.sendall("todo list is empty!".encode())
+                # get the ok
                 conn.recv(1024)
-
+            else:
+                for line in todo_list:
+                    conn.sendall(line.encode())
+                    # get the ok to send another
+                    conn.recv(1024)
 
         def add_todo():
             '''add's a todo to the file'''
@@ -124,7 +136,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             # third, mark that todo as complete.
             mark_todo_complete(file,todo)
 
-
+        #endregion
 
         while True:
             choice = conn.recv(1024)

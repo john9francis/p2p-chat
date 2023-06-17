@@ -1,7 +1,6 @@
 # todo-client.py
 
 import socket
-import threading
 
 HOST = "John_Francis"  # The server's hostname or IP address
 PORT = 60000  # The port used by the server
@@ -13,7 +12,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     welcome = s.recv(1024)
     print(welcome.decode())
 
-    #region Functions
+    #region socket functions
 
     def receive_todo_list():
         '''deals with receiving and displaying the todo list from the server'''
