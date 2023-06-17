@@ -53,7 +53,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             if response == 'valid':
                 print(f"Marking {todo_to_mark} as complete.")
                 break
-            else:
+            elif response == 'invalid':
                 print("Invalid option. Please try again.")
 
 
