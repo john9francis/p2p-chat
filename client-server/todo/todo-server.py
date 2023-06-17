@@ -55,7 +55,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 conn.sendall(line.encode())
 
             # third, wait for client to send the ok
-            ok = conn.recv(4096)
+            conn.recv(4096)
 
         def add_todo(todo):
             '''add's a todo to the file'''
