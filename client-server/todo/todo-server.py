@@ -84,8 +84,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 # get the ok to send another
                 conn.recv(1024)
 
-            # third, wait for client to send the ok
-            conn.recv(4096)
 
         def add_todo():
             '''add's a todo to the file'''
@@ -97,6 +95,12 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
         def complete_todo():
             '''complete's a todo from the file'''
+
+            # first, send the todo list to look at:
+            send_todo_list()
+
+            # second, receive the todo they want to complete
+
 
         while True:
             choice = conn.recv(1024)

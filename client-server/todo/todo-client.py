@@ -32,8 +32,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             # send the ok to send another
             s.sendall(b'ok')
 
-        # third, send back something
-        s.send(b'done')
 
     def add_todo():
         '''deals with adding a todo to the server's todo list'''
@@ -43,7 +41,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
     def complete_todo():
         '''accesses a todo from the server and changes it to complete'''
-        
+        # first, get a list of the todos
+        receive_todo_list()
+
+
 
     #endregion
 
