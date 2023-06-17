@@ -13,12 +13,21 @@ file = "todo_list.txt"
 def write_todo(todo,filename):
     '''Takes in a todo string and a file and writes the todo to the file on a new line.'''
     with open(filename, "a") as f:
-        f.write(f'{todo}\n')
+        f.write(f'_{todo}\n') # note the underscore. this means it's not complete.
 
 def read_file(filename):
     '''Takes in a filename and returns the contents of the file as a string'''
     with open(filename, "r") as f:
         return f.read().splitlines()
+    
+def get_undone_todos(filename):
+    '''returns a list of todo's with the _ as the first character'''
+    all_todos = read_file(filename)
+    
+    undone_todos = []
+    for todo in all_todos:
+        if todo[0] == "_":
+            undone_todos.append(todo[1:])
     
 #endregion  
 
