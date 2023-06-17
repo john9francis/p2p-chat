@@ -96,7 +96,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 undone_todos = get_undone_todos(file)
                 valid = False
                 for item in undone_todos:
-                    if todo == item:
+                    print(item, todo)
+                    if todo == str(item):
                         valid = True
                         break
 
