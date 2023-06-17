@@ -25,13 +25,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.sendall(b'ok')
 
         # second, receive that many lines from the server.
-        client_list = []
         for _ in range(list_lines):
             line = s.recv(4096).decode()
-            client_list.append(line)
-
-        # print it out for the client to see:
-        for line in client_list:
             print(line)
 
         # third, send back something
