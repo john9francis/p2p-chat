@@ -28,6 +28,8 @@ def get_undone_todos(filename):
     for todo in all_todos:
         if todo[0] == "_":
             undone_todos.append(todo[1:])
+
+    return undone_todos
     
 #endregion  
 
