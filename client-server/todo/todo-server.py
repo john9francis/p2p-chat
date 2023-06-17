@@ -114,27 +114,30 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             # first, send the todo list to look at:
             send_todo_list()
 
-            # second, receive the todo they want to complete
-            todo = ""
-            while True:
-                todo = conn.recv(1024).decode()
+            # pass everything if there are no todos in the list
+            if len(get_undone_todos(file)) != 0:
 
-                # Check if todo is in the list
-                undone_todos = get_undone_todos(file)
-                valid = False
-                for item in undone_todos:
-                    if todo == str(item):
-                        valid = True
+                # second, receive the todo they want to complete
+                todo = ""
+                while True:
+                    todo = conn.recv(1024).decode()
+    
+                    # Check if todo is in the list
+                    undone_todos = get_undone_todos(file)
+                    valid = False
+                    for item in undone_todos:
+                        if todo == str(item):
+                            valid = True
+                            break
+                        
+                    if valid:
+                        conn.sendall('0'.encode())
                         break
-
-                if valid:
-                    conn.sendall('0'.encode())
-                    break
-                else:
-                   conn.sendall('1'.encode())
-
-            # third, mark that todo as complete.
-            mark_todo_complete(file,todo)
+                    else:
+                       conn.sendall('1'.encode())
+    
+                # third, mark that todo as complete.
+                mark_todo_complete(file,todo)
 
         #endregion
 

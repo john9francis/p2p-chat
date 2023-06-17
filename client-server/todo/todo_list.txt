@@ -1,7 +1,8 @@
 Xhomework
-_test
+Xtest
 Xstudy
 Xsleep
-_exercise
-_program
+Xexercise
+Xprogram
 Xfun
+Xtest
