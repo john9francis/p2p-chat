@@ -50,10 +50,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.sendall(todo_to_mark.encode())
 
             response = s.recv(1024).decode()
-            if response == 'valid':
+            if response == '0':
                 print(f"Marking {todo_to_mark} as complete.")
                 break
-            elif response == 'invalid':
+            elif response == '1':
                 print("Invalid option. Please try again.")
 
 

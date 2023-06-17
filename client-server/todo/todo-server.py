@@ -102,10 +102,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                         break
 
                 if valid:
-                    conn.sendall('valid'.encode())
+                    conn.sendall('0'.encode())
                     break
                 else:
-                   conn.sendall('invalid'.encode())
+                   conn.sendall('1'.encode())
 
 
 
