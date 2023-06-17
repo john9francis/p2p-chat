@@ -41,6 +41,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         todo = input()
         s.sendall(todo.encode())
 
+    def complete_todo():
+        '''accesses a todo from the server and changes it to complete'''
+        
+
     #endregion
 
     while True:

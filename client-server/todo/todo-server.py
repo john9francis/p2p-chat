@@ -10,7 +10,7 @@ file = "todo_list.txt"
 
 #region read & write to file functions
 
-def write_todo(todo,filename):
+def append_todo(todo,filename):
     '''Takes in a todo string and a file and writes the todo to the file on a new line.'''
     with open(filename, "a") as f:
         f.write(f'_{todo}\n') # note the underscore. this means it's not complete.
@@ -30,6 +30,23 @@ def get_undone_todos(filename):
             undone_todos.append(todo[1:])
 
     return undone_todos
+    
+def check_todo_existence(filename, todo):
+    '''returns true if the todo is found in the todo list file,
+    and returns false otherwise.'''
+    all_todos = read_file(filename)
+    existence = False
+
+    for list_todo in all_todos:
+        if list_todo == f"_{todo}":
+            existence = True
+
+    return existence
+
+def complete_todo(filename, todo):
+    '''takes in a todo that exists in the todo list file,
+    and changes the _ to an X. '''
+    pass
     
 #endregion  
 
@@ -76,7 +93,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             todo = conn.recv(1024).decode()
 
             # add the todo to the file
-            write_todo(todo, file)
+            append_todo(todo, file)
+
+        def complete_todo():
+            '''complete's a todo from the file'''
 
         while True:
             choice = conn.recv(1024)

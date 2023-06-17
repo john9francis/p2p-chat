@@ -1,2 +1,3 @@
 _homework
 _test
+_study
