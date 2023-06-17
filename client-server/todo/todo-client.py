@@ -29,7 +29,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     while True:
         choice = input()
 
-        s.sendall((choice + "\n").encode())
+        s.sendall(choice.encode())
         server_response = s.recv(1024)
 
         print(server_response.decode())
