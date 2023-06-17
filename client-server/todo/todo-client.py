@@ -19,12 +19,12 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         '''deals with receiving and displaying the todo list from the server'''
 
         # first, receive the amount of lines
-        list_lines = int(s.recv(1024).decode())
+        list_lines = int(s.recv(4096).decode())
 
         # second, receive that many lines from the server.
         client_list = []
         for _ in range(list_lines):
-            line = s.recv(1024).decode()
+            line = s.recv(4096).decode()
             client_list.append(line)
 
         # print it out for the client to see:
