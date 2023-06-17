@@ -46,6 +46,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         elif server_response.decode() == "Which to-do did you complete?":
             # enter complete logic
             pass
+        
         elif server_response.decode() == "error":
             print("Sorry, invalid input. Please try again.")
 
